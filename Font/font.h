@@ -1,6 +1,6 @@
 #pragma once
 #include <d3d11.h>
-#include "VertexFormat.h"
+#include "../Graphics/VertexFormat.h"
 
 struct FontType
 {

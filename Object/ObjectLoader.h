@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "D3D11Renderer.h"
+#include "../Graphics/D3D11Renderer.h"
 
 #define MODEL_PATH "../3DModel/"
 
