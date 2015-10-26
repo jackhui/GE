@@ -41,6 +41,21 @@ public:
 		_rows[2] = data[2];
 		_rows[3] = data[3];
 	}
+	// get translate vector x, y, z
+	inline float getTranslateX() const
+	{
+		return _rows[0].m128_f32[3];
+	}
+
+	inline float getTranslateY() const
+	{
+		return _rows[1].m128_f32[3];
+	}
+
+	inline float getTranslateZ() const
+	{
+		return _rows[2].m128_f32[3];
+	}
 
 	// Copy constructor
 	inline SIMDMatrix4(const SIMDMatrix4& other)

@@ -28,6 +28,9 @@
     <Filter Include="Font">
       <UniqueIdentifier>{eda0d2c2-7f46-46f7-8264-25b5cb5de030}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{af317daa-18cd-4d90-b810-1df31a85a768}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Object\Camera.cpp">
@@ -74,6 +77,30 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="..\Physics\object.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\point.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\ray.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\Sphere.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\aabb.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\body.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\collide.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Physics\collisionWorld.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\texture.hlsl">
@@ -163,5 +190,29 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="..\Physics\collisionWorld.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\object.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\point.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\ray.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\Sphere.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\aabb.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\body.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Physics\collide.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

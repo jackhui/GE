@@ -139,7 +139,7 @@ void GameEngine::Start(HINSTANCE hInst)
 		{ Vector3(3.0f, 3.0f, 1.0f),		Vector3(3.0f, 2.0f, 1.0f) },
 		{ Vector3(-3.0f, 3.0f, 1.0f),		Vector3(-3.0f, 2.0f, 1.0f) },
 		//	Vertex(center), Size(width, height, depth)
-		{ Vector3(3.0f, 0.0f, 1.0f),		Vector3(1.0f, 1.5f, 2.0f) },
+		{ Vector3(3.0f, 0.0f, 1.0f),		Vector3(4.0f, 4.0f, 4.0f) },
 		{ Vector3(-3.0f, 0.0f, 1.0f),		Vector3(1.0f, 1.5f, 2.0f) },
 		{ Vector3(3.0f, -3.0f, 1.0f),		Vector3(1.0f, 1.5f, 2.0f) },
 		{ Vector3(-3.0f, -3.0f, 1.0f),		Vector3(1.0f, 1.5f, 2.0f) }
@@ -147,16 +147,17 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	Debug debug;
 	//Two vertices
-	debug.draw_line(vertices[0]);
-	debug.draw_line(vertices[1]);
+//	debug.draw_line(vertices[0]);
+//	debug.draw_line(vertices[1]);
 	//Vector3(center_x, center_y, center_z), Vector3(width, height depth), vertexPerCrossSection, num_slices)
 	debug.draw_prism(vertices[2][0], vertices[2][1], Primitives::CYLINDER);
-	debug.draw_pyramid(vertices[3][0], vertices[3][1], Primitives::CONE, 30);
-	debug.draw_pyramid(vertices[4][0], vertices[4][1], Primitives::RECTANGULAR_PYRAMID, 30);
-	debug.draw_ellipsoid(vertices[5][0], vertices[5][1], Primitives::ELLIPSOID, 30);
+//	debug.draw_pyramid(vertices[3][0], vertices[3][1], Primitives::CONE, 30);
+//	debug.draw_pyramid(vertices[4][0], vertices[4][1], Primitives::RECTANGULAR_PYRAMID, 30);
+//	debug.draw_ellipsoid(vertices[5][0], vertices[5][1], Primitives::ELLIPSOID, 30);
+	
 
 	Font font;
-	font.write(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 6.0f, -2.0f);	 //All supported characters
+	font.write("JACKHSK", 6.0f, -2.0f);	 //All supported characters
 	font.write("Elegant Engine", 0.0f, 0.0f);
 
 	//Import .obj object

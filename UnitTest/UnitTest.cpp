@@ -14,6 +14,7 @@
 #include "..\Memory\MemoryManager.h"
 
 
+
 #pragma warning(disable : 4996)
 
 // Change typedef name if needed for testing
@@ -400,7 +401,7 @@ void TEST_SPEED_FILE_IO()
 	for (int i = 0; i < 10267 * 3; i++)
 	{
 		float temp;
-		fscanf(fr, "%f", &temp);	
+		fscanf(fr, "%f", &temp);
 		arr1[i] = temp;
 	}
 	QueryPerformanceCounter(&perf_end);
@@ -464,8 +465,8 @@ void TEST_POOL_MEMORY()
 	Vector3* temp2 = new(hle2) Vector3(0, 0, 0);
 	std::cout << '\n' << temp1 << " " << temp2 << "\n";
 	//std::cout << "size of pool:" << sizeof(MemoryPool) << "\n";
-	std::cout << "handle 1: " << (uint32_t) hle1 << " ";
-	std::cout << "handle 2: " << (uint32_t) hle2 << "\n";
+	std::cout << "handle 1: " << (uint32_t)hle1 << " ";
+	std::cout << "handle 2: " << (uint32_t)hle2 << "\n";
 
 	MemoryManager::getInstance()->Free(hle1);
 	MemoryManager::getInstance()->Print();
