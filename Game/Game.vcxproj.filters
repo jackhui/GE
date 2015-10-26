@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{6c5a3f93-7244-4d1d-8ee8-f0d9c5147518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{fd638da9-c774-4c39-9ec8-7185b7b6e351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{2e2a5275-6553-4a7f-8f62-65748a8ede2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{211a1078-ca3b-4778-b7ce-65a6e659cc78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{d21bad22-ed84-44c2-a36a-0931bb9cac06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{832adf54-193e-41e8-bdc2-48b226afe707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{e6e6dbae-fc34-4afc-b3ff-dab42dc8feeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{a703c263-ddc4-4086-b43a-11826f062845}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{eda0d2c2-7f46-46f7-8264-25b5cb5de030}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Object\Camera.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\D3D11Renderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Math\simdmath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\MeshManager.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\MeshInstance.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\MeshData.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Memory\MemoryManager.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\Graphics\VertexBufferEngine.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\IndexBufferEngine.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\ShaderManager.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\TextureManager.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Debug\Debug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Font\font.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Object\ObjectLoader.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\texture.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertex1P.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertex1P1D.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertex1P1UV.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\diffuse.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\red.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertex1P1N1UV.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertex1P1N.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Object\Camera.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\D3D11Renderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\MeshData.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\MeshInstance.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\MeshManager.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Timer\Timer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Math\simdmath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Memory\MemoryManager.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Memory\Handle.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Memory\MemoryPool.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\VertexFormat.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\System\Assertion.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\System\FileSystem.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\VertexBufferEngine.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\IndexBufferEngine.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\ShaderManager.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\TextureManager.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Debug\Debug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Font\font.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Object\ObjectLoader.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h" />
+  </ItemGroup>
+</Project>
