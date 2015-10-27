@@ -1,12 +1,12 @@
 #include "cdObject.h"
 
 
-Body * Object::getBody() const
+Body * CollidableObject::getBody() const
 {
 	return m_pBody;
 }
 
-void Object::simulate(const int cycle)
+void CollidableObject::simulate(const int cycle)
 {
 	for (int i = 0; i < cycle; i++)
 	{

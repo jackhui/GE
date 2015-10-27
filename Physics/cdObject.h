@@ -3,15 +3,14 @@
 #define CDOBJECT_H
 
 #include "cdBody.h"
-#include "cdAabb.h"
 #include "../Math/simdmath.h"
 
-class Object
+class CollidableObject
 {
 public:
-	Object(){}
+	CollidableObject(){}
 
-	Object(Body* body, const SIMDVector3& velocity, const int objectID) :
+	CollidableObject(Body* body, const SIMDVector3& velocity, const int objectID) :
 		m_pPos(body->getCenter()),
 		m_pCurrent(body->getCenter()),
 		m_pVelocity(velocity),

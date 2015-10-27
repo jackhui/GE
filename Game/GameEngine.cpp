@@ -5,6 +5,7 @@
 #include "..\Debug\Debug.h"
 #include "..\Font\Font.h"
 #include "..\Object\ObjectLoader.h"
+#include "..\Physics\cdCollisionWorld.h"
 
 typedef SIMDVector3 Vector3;
 
@@ -147,6 +148,8 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	Debug debug;
 	//Two vertices
+
+/**
 	debug.draw_line(vertices[0]);
 	debug.draw_line(vertices[1]);
 	//Vector3(center_x, center_y, center_z), Vector3(width, height depth), vertexPerCrossSection, num_slices)
@@ -160,7 +163,9 @@ void GameEngine::Start(HINSTANCE hInst)
 		translate += i;
 		debug.draw_prism(Vector3(translate, translate, translate), vertices[2][1], Primitives::CYLINDER);
 	}
-
+*/
+	debug.draw_prism(Vector3(0.0f, 0.0f, 0.0f), vertices[2][1], Primitives::CYLINDER);
+	CollisionWorld world;
 
 
 	Font font;

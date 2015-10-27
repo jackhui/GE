@@ -19,7 +19,7 @@ void Collide::setResponseObject2(const SIMDVector3& response, const int objectID
 	m_pResponseObject2.m_pObjectID = objectID;
 }
 
-void Collide::collision(const Object * object1, const Object * object2)
+void Collide::collision(const CollidableObject * object1, const CollidableObject * object2)
 {
 	if (object1->getBody()->getType() == typeAABB && object2->getBody()->getType() == typeAABB)
 		boxBoxCollide(object1, object2);
@@ -56,7 +56,7 @@ void Collide::collision(const Object * object1, const Object * object2)
 }
 
 
-void Collide::boxBoxCollide(const Object * box1, const Object * box2)
+void Collide::boxBoxCollide(const CollidableObject * box1, const CollidableObject * box2)
 {
 	AABB *aabb1 = (AABB*)box1->getBody();
 	AABB *aabb2 = (AABB*)box2->getBody();
@@ -101,7 +101,7 @@ void Collide::boxBoxCollide(const Object * box1, const Object * box2)
 	setResponseObject2(responseObject2.Normalize(), box2->getObjectID());
 }
 
-void Collide::sphereSphereCollide(const Object * sphere_1, const Object * sphere_2)
+void Collide::sphereSphereCollide(const CollidableObject * sphere_1, const CollidableObject * sphere_2)
 {
 	Sphere *sphere1 = (Sphere*)sphere_1->getBody();
 	Sphere *sphere2 = (Sphere*)sphere_2->getBody();
@@ -119,11 +119,11 @@ void Collide::sphereSphereCollide(const Object * sphere_1, const Object * sphere
 	setResponseObject2(responseObject2.Normalize(), sphere_2->getObjectID());
 }
 
-void Collide::boxSphereCollide(const Object * box, const Object * sphere)
+void Collide::boxSphereCollide(const CollidableObject * box, const CollidableObject * sphere)
 {
 }
 
-void Collide::pointBoxCollide(const Object * point_, const Object * box)
+void Collide::pointBoxCollide(const CollidableObject * point_, const CollidableObject * box)
 {
 	Point *point = (Point*)point_->getBody();
 	AABB *aabb = (AABB*)box->getBody();
@@ -150,7 +150,7 @@ void Collide::pointBoxCollide(const Object * point_, const Object * box)
 	setResponseObject2(responseObject2, box->getObjectID());
 }
 
-void Collide::pointSphereCollide(const Object * point_, const Object * sphere_)
+void Collide::pointSphereCollide(const CollidableObject * point_, const CollidableObject * sphere_)
 {
 	Point *point = (Point*)point_->getBody();
 	Sphere *sphere = (Sphere*)sphere_->getBody();
@@ -168,7 +168,7 @@ void Collide::pointSphereCollide(const Object * point_, const Object * sphere_)
 	setResponseObject2(responseObject2, sphere_->getObjectID());
 }
 
-void Collide::raySphereCollide(const Object * ray_, const Object * sphere_)
+void Collide::raySphereCollide(const CollidableObject * ray_, const CollidableObject * sphere_)
 {
 	Ray *ray = (Ray*)ray_->getBody();
 	Sphere *sphere = (Sphere*)sphere_->getBody();
@@ -190,6 +190,6 @@ void Collide::raySphereCollide(const Object * ray_, const Object * sphere_)
 	setResponseObject2(responseObject2, sphere_->getObjectID());
 }
 
-void Collide::rayBoxCollide(const Object * ray, const Object * box)
+void Collide::rayBoxCollide(const CollidableObject * ray, const CollidableObject * box)
 {
 }

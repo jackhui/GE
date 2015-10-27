@@ -5,7 +5,7 @@
 #include "../Math/simdmath.h"
 #include "cdObject.h"
 
-class Object;
+class CollidableObject;
 
 struct Response
 {
@@ -31,14 +31,14 @@ public:
 
 
 	// handle collision detection
-	void collision(const Object* object1, const Object* object2);
-	void boxBoxCollide(const Object* box1, const Object* box2);
-	void sphereSphereCollide(const Object* sphere1, const Object* sphere2);
-	void boxSphereCollide(const Object* box, const Object* sphere);
-	void pointBoxCollide(const Object* point, const Object* box);
-	void pointSphereCollide(const Object* point, const Object* sphere);
-	void raySphereCollide(const Object* ray, const Object* sphere);
-	void rayBoxCollide(const Object* ray, const Object* box);
+	void collision(const CollidableObject* object1, const CollidableObject* object2);
+	void boxBoxCollide(const CollidableObject* box1, const CollidableObject* box2);
+	void sphereSphereCollide(const CollidableObject* sphere1, const CollidableObject* sphere2);
+	void boxSphereCollide(const CollidableObject* box, const CollidableObject* sphere);
+	void pointBoxCollide(const CollidableObject* point, const CollidableObject* box);
+	void pointSphereCollide(const CollidableObject* point, const CollidableObject* sphere);
+	void raySphereCollide(const CollidableObject* ray, const CollidableObject* sphere);
+	void rayBoxCollide(const CollidableObject* ray, const CollidableObject* box);
 
 
 private:

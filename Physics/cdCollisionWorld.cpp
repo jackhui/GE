@@ -1,6 +1,6 @@
 #include "cdCollisionWorld.h"
 
-void CollisionWorld::addObject(const Object & object)
+void CollisionWorld::addObject(const CollidableObject & object)
 {
 	m_pObjects.push_back(object);
 }
