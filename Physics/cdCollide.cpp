@@ -1,10 +1,10 @@
 
-#include "collide.h"
-#include "Sphere.h"
-#include "body.h"
-#include "aabb.h"
-#include "point.h"
-#include "ray.h"
+#include "cdCollide.h"
+#include "cdSphere.h"
+#include "cdBody.h"
+#include "cdAabb.h"
+#include "cdPoint.h"
+#include "cdRay.h"
 
 
 void Collide::setResponseObject1(const SIMDVector3& response, const int objectID)

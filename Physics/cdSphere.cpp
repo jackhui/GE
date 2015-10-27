@@ -1,4 +1,4 @@
-#include "Sphere.h"
+#include "cdSphere.h"
 
 Sphere::Sphere(const SIMDMatrix4 & transform, const float & radius, const SIMDVector3 & origin)
 {

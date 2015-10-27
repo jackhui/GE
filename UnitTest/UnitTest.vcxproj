@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -80,6 +80,14 @@
   <ItemGroup>
     <ClCompile Include="..\Math\simdmath.cpp" />
     <ClCompile Include="..\Memory\MemoryManager.cpp" />
+    <ClCompile Include="..\Physics\cdAabb.cpp" />
+    <ClCompile Include="..\Physics\cdBody.cpp" />
+    <ClCompile Include="..\Physics\cdCollide.cpp" />
+    <ClCompile Include="..\Physics\cdCollisionWorld.cpp" />
+    <ClCompile Include="..\Physics\cdObject.cpp" />
+    <ClCompile Include="..\Physics\cdPoint.cpp" />
+    <ClCompile Include="..\Physics\cdRay.cpp" />
+    <ClCompile Include="..\Physics\cdSphere.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

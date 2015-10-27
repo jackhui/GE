@@ -1,4 +1,4 @@
-#include "collisionWorld.h"
+#include "cdCollisionWorld.h"
 
 void CollisionWorld::addObject(const Object & object)
 {

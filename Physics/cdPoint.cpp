@@ -1,4 +1,4 @@
-#include "point.h"
+#include "cdPoint.h"
 
 void Point::translate(const SIMDVector3 & translate)
 {

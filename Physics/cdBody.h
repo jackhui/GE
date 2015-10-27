@@ -1,9 +1,9 @@
 
 
-#ifndef BODY_H
-#define BODY_H
+#ifndef CDBODY_H
+#define CDBODY_H
 
-#include "collide.h"
+#include "cdCollide.h"
 #include "../Math/simdmath.h"
 
 enum

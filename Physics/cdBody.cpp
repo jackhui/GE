@@ -1,9 +1,9 @@
 
-#include "Sphere.h"
-#include "aabb.h"
-#include "body.h"
-#include "point.h"
-#include "ray.h"
+#include "cdSphere.h"
+#include "cdAabb.h"
+#include "cdBody.h"
+#include "cdPoint.h"
+#include "cdRay.h"
 
 SIMDVector3 Body::getCenter() const
 {

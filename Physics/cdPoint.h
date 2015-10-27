@@ -1,9 +1,9 @@
-#ifndef POINT_H
-#define POINT_H
+#ifndef CDPOINT_H
+#define CDPOINT_H
 
 #include "../Math/simdmath.h"
-#include "collide.h"
-#include "body.h"
+#include "cdCollide.h"
+#include "cdBody.h"
 
 class Point : public Body
 {

@@ -1,4 +1,4 @@
-#include "ray.h"
+#include "cdRay.h"
 
 void Ray::translate(const SIMDVector3 & translate)
 {

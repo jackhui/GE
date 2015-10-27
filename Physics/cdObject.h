@@ -1,9 +1,9 @@
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef CDOBJECT_H
+#define CDOBJECT_H
 
-#include "body.h"
-#include "aabb.h"
+#include "cdBody.h"
+#include "cdAabb.h"
 #include "../Math/simdmath.h"
 
 class Object

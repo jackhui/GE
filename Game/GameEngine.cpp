@@ -147,25 +147,32 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	Debug debug;
 	//Two vertices
-//	debug.draw_line(vertices[0]);
-//	debug.draw_line(vertices[1]);
+	debug.draw_line(vertices[0]);
+	debug.draw_line(vertices[1]);
 	//Vector3(center_x, center_y, center_z), Vector3(width, height depth), vertexPerCrossSection, num_slices)
 	debug.draw_prism(vertices[2][0], vertices[2][1], Primitives::CYLINDER);
-//	debug.draw_pyramid(vertices[3][0], vertices[3][1], Primitives::CONE, 30);
-//	debug.draw_pyramid(vertices[4][0], vertices[4][1], Primitives::RECTANGULAR_PYRAMID, 30);
-//	debug.draw_ellipsoid(vertices[5][0], vertices[5][1], Primitives::ELLIPSOID, 30);
-	
+	debug.draw_pyramid(vertices[3][0], vertices[3][1], Primitives::CONE, 30);
+	debug.draw_pyramid(vertices[4][0], vertices[4][1], Primitives::RECTANGULAR_PYRAMID, 30);
+	debug.draw_ellipsoid(vertices[5][0], vertices[5][1], Primitives::ELLIPSOID, 30);
+	float translate = 0.0f;
+	for (int i = 0; i < 100; i++)
+	{
+		translate += i;
+		debug.draw_prism(Vector3(translate, translate, translate), vertices[2][1], Primitives::CYLINDER);
+	}
+
+
 
 	Font font;
 	font.write("JACKHSK", 6.0f, -2.0f);	 //All supported characters
 	font.write("Elegant Engine", 0.0f, 0.0f);
-
+/**
 	//Import .obj object
 	ObjectLoader objectLoader("CityColony");
 	if (objectLoader.LoadWaveFrontObject(0.01f)) {
 		objectLoader.Draw();
 	}
-
+*/
 	/*
 	for (std::vector<MeshInstance*>::iterator itr = D3D11Renderer::GetInstance()->GetMeshInstanceList().begin();
 		itr < D3D11Renderer::GetInstance()->GetMeshInstanceList().end();

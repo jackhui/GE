@@ -1,9 +1,9 @@
 
-#ifndef INTERSECTDATA_H
-#define INTERSECTDATA_H
+#ifndef CDCOLLIDE_H
+#define CDCOLLIDE_H
 
 #include "../Math/simdmath.h"
-#include "object.h"
+#include "cdObject.h"
 
 class Object;
 

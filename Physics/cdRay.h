@@ -1,10 +1,10 @@
 
-#ifndef RAY_H
-#define RAY_H
+#ifndef CDRAY_H
+#define CDRAY_H
 
 #include "../Math/simdmath.h"
-#include "collide.h"
-#include "body.h"
+#include "cdCollide.h"
+#include "cdBody.h"
 
 class Ray : public Body
 {

@@ -12,7 +12,14 @@
 #include <fstream>
 #include <sstream>
 #include "..\Memory\MemoryManager.h"
-
+#include "..\Physics\cdSphere.h"
+#include "..\Physics\cdAabb.h"
+#include "..\Physics\cdBody.h"
+#include "..\Physics\cdObject.h"
+#include "..\Physics\cdPoint.h"
+#include "..\Physics\cdRay.h"
+#include "..\Physics\cdCollide.h"
+#include "..\Physics\cdCollisionWorld.h"
 
 
 #pragma warning(disable : 4996)
@@ -330,7 +337,82 @@ TEST(Quaternion, Multiplcation)
 	EXPECT_NEAR(0.707f, q.GetX(), 0.01f);
 }
 
+TEST(Matrix, getMatrix)
+{
+	float trans[4][4] = { 4.0f, 0.0f, 0.0f, 1.0f,
+		0.0f, 3.0f, 0.0f, 2.0f,
+		0.0f, 0.0f, 3.0f, 3.0f,
+		0.0f, 0.0f, 0.0f, 1.0f };
+	Matrix4 translate(trans);
 
+	printf("x: %f, y: %f, z: %f.\n", translate.getTranslateX(), translate.getTranslateY(), translate.getTranslateZ());
+
+}
+
+// Collision Testing Start
+
+TEST(collideWorld, box2box)
+{
+	Vector3 p1(0.0f, 0.0f, 0.0f);
+	Vector3 p2(1.0f, 1.0f, 1.0f);
+	Vector3 p3(0.9f, 0.9f, 0.9f);
+	Vector3 p4(2.0f, 2.0f, 2.0f);
+	AABB aabb1(p1, p2);
+	AABB aabb2(p3, p4);
+	Object object1(&aabb1, p1, 0);
+	Object object2(&aabb2, p1, 1);
+	Collide collide;
+
+	CollisionWorld world;
+	world.addObject(object1);
+	world.addObject(object2);
+	world.computeCollision();
+
+	printf("# of objects: %d\n", world.getObjectSize());
+	printf("# of collides: %d\n", world.getCollideSize());
+}
+
+TEST(collideWorld, sphere2sphere)
+{
+	Vector3 p1(0.0f, 0.0f, 0.0f);
+	Vector3 p2(1.0f, 0.0f, 0.0f);
+	float r1 = 0.5f;
+	float r2 = 0.51f;
+	Sphere sphere1(p1, r1);
+	Sphere sphere2(p2, r2);
+	Object object1(&sphere1, p1, 0);
+	Object object2(&sphere2, p1, 1);
+	Collide collide;
+
+	CollisionWorld world;
+	world.addObject(object1);
+	world.addObject(object2);
+	world.computeCollision();
+
+	printf("# of objects: %d\n", world.getObjectSize());
+	printf("# of collides: %d\n", world.getCollideSize());
+}
+
+TEST(collideWorld, ray2sphere)
+{
+	Vector3 p1(0.0f, 0.0f, 0.0f);
+	Vector3 p2(0.0f, 4.0f, 0.0f);
+	Vector3 vecDir(0.0f, 2.0f, 0.0f);
+	float r = 2.0f;
+	Sphere sphere(p2, r);
+	Ray ray(p1, vecDir);
+	Object object1(&ray, p1, 0);
+	Object object2(&sphere, p1, 1);
+	CollisionWorld world;
+	world.addObject(object1);
+	world.addObject(object2);
+	world.computeCollision();
+
+	printf("# of objects: %d\n", world.getObjectSize());
+	printf("# of collides: %d\n", world.getCollideSize());
+}
+
+// Collision Test End
 
 #endif
 #ifdef NDEBUG

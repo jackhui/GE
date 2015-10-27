@@ -1,4 +1,4 @@
-#include "object.h"
+#include "cdObject.h"
 
 
 Body * Object::getBody() const

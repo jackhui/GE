@@ -1,11 +1,11 @@
 
-#ifndef AABB_H
-#define AABB_H
+#ifndef CDAABB_H
+#define CDAABB_H
 
 #include "../Math/simdmath.h"
-#include "collide.h"
-#include "Sphere.h"
-#include "body.h"
+#include "cdCollide.h"
+#include "cdSphere.h"
+#include "cdBody.h"
 
 class AABB : public Body
 {

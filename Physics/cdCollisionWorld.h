@@ -1,9 +1,9 @@
 
-#ifndef COLLISIONWORLD_H
-#define COLLISIONWORLD_H
+#ifndef CDCOLLISIONWORLD_H
+#define CDCOLLISIONWORLD_H
 #include <vector>
-#include "object.h"
-#include "collide.h"
+#include "cdObject.h"
+#include "cdCollide.h"
 
 
 class CollisionWorld

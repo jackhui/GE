@@ -1,10 +1,10 @@
 
-#ifndef SPHERE_H
-#define SPHERE_H
+#ifndef CDSPHERE_H
+#define CDSPHERE_H
 
 #include "../Math/simdmath.h"
-#include "collide.h"
-#include "body.h"
+#include "cdCollide.h"
+#include "cdBody.h"
 
 class Sphere : public Body
 {

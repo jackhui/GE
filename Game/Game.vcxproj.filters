@@ -29,7 +29,7 @@
       <UniqueIdentifier>{eda0d2c2-7f46-46f7-8264-25b5cb5de030}</UniqueIdentifier>
     </Filter>
     <Filter Include="Physics">
-      <UniqueIdentifier>{af317daa-18cd-4d90-b810-1df31a85a768}</UniqueIdentifier>
+      <UniqueIdentifier>{62235cc1-7e5f-4419-89a6-1f78b50c0eaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,28 +77,28 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="..\Physics\object.cpp">
+    <ClCompile Include="..\Physics\cdObject.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\point.cpp">
+    <ClCompile Include="..\Physics\cdPoint.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\ray.cpp">
+    <ClCompile Include="..\Physics\cdRay.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\Sphere.cpp">
+    <ClCompile Include="..\Physics\cdSphere.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\aabb.cpp">
+    <ClCompile Include="..\Physics\cdAabb.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\body.cpp">
+    <ClCompile Include="..\Physics\cdBody.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\collide.cpp">
+    <ClCompile Include="..\Physics\cdCollide.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\Physics\collisionWorld.cpp">
+    <ClCompile Include="..\Physics\cdCollisionWorld.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -190,28 +190,28 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="..\Physics\collisionWorld.h">
+    <ClInclude Include="..\Physics\cdCollisionWorld.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\object.h">
+    <ClInclude Include="..\Physics\cdObject.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\point.h">
+    <ClInclude Include="..\Physics\cdPoint.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\ray.h">
+    <ClInclude Include="..\Physics\cdRay.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\Sphere.h">
+    <ClInclude Include="..\Physics\cdSphere.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\aabb.h">
+    <ClInclude Include="..\Physics\cdAabb.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\body.h">
+    <ClInclude Include="..\Physics\cdBody.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\Physics\collide.h">
+    <ClInclude Include="..\Physics\cdCollide.h">
       <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
