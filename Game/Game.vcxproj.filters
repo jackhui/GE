@@ -31,6 +31,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{62235cc1-7e5f-4419-89a6-1f78b50c0eaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{30902125-9a21-44b4-95c4-bd0d4bb0e3e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Object\Camera.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="..\Physics\cdCollisionWorld.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GameObject\GameObject.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +219,9 @@
     </ClInclude>
     <ClInclude Include="..\Physics\cdCollide.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

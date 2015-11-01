@@ -10,18 +10,18 @@ class Point : public Body
 public:
 	Point(){}
 
-	Point(const SIMDVector3& point)
+	Point(const Vector3& point)
 	{
 		m_pPoint = point;
 		Body::setType(typePOINT);
 	}
 
-	SIMDVector3 getPoint() const { return m_pPoint; }
-	virtual void translate(const SIMDVector3& translate);
-	const SIMDVector3 getCenter();
+	Vector3 getPoint() const { return m_pPoint; }
+	virtual void translate(const Vector3& translate);
+	const Vector3 getCenter();
 
 private:
-	SIMDVector3 m_pPoint;
+	Vector3 m_pPoint;
 };
 
 #endif POINT_H

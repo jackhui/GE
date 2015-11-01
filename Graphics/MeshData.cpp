@@ -254,6 +254,7 @@ void MeshData::Render()
 	D3D11Renderer::GetInstance()->m_pD3D11Context->PSSetShader(m_pPS, 0, 0);
 	D3D11Renderer::GetInstance()->m_pD3D11Context->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &m_stride, &m_vertexOffset);
 	D3D11Renderer::GetInstance()->m_pD3D11Context->IASetIndexBuffer(m_pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+	D3D11Renderer::GetInstance()->m_pD3D11Context->VSSetConstantBuffers(0, 1, &g_pConstantBuffer);
 
 	if (m_pTexResourceView != NULL) {
 		D3D11Renderer::GetInstance()->m_pD3D11Context->PSSetShaderResources(0, 1, &m_pTexResourceView);

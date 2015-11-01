@@ -6,6 +6,9 @@
 #include "cdCollide.h"
 #include "../Math/simdmath.h"
 
+typedef SIMDVector3 Vector3;
+typedef SIMDMatrix4 Matrix4;
+
 enum
 {
 	typeSPHERE,
@@ -32,9 +35,9 @@ public:
 
 	int getType() const { return m_pType; }
 	void setType(const int type) { m_pType = type; }
-	SIMDVector3 getCenter() const;
-	virtual void computeAABB(const SIMDMatrix4& transform) {}
-	virtual void translate(const SIMDVector3& translate) {}
+	Vector3 getCenter() const;
+	virtual void computeAABB(const Matrix4& transform) {}
+	virtual void translate(const Vector3& translate) {}
 
 private:
 	int m_pType;

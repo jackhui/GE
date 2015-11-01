@@ -1,4 +1,3 @@
-
 #ifndef CDCOLLISIONWORLD_H
 #define CDCOLLISIONWORLD_H
 #include <vector>
@@ -19,6 +18,7 @@ public:
 private:
 	std::vector<CollidableObject> m_pObjects;
 	std::vector<Collide> m_pCollide;
+
 };
 
 

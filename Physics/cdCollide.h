@@ -6,10 +6,12 @@
 #include "cdObject.h"
 
 class CollidableObject;
+typedef SIMDVector3 Vector3;
+typedef SIMDMatrix4 Matrix4;
 
 struct Response
 {
-	SIMDVector3 m_pObjectResponse;
+	Vector3 m_pObjectResponse;
 	int m_pObjectID;
 };
 
@@ -26,8 +28,8 @@ public:
 	const Response getResponseObject2() const { return m_pResponseObject2; }
 	void setCollide(bool collide) { m_pCollide = collide; }
 	void setDistance(float distance) { m_pDistance = distance; }
-	void setResponseObject1(const SIMDVector3& response, const int objectID);
-	void setResponseObject2(const SIMDVector3& response, const int objectID);
+	void setResponseObject1(const Vector3& response, const int objectID);
+	void setResponseObject2(const Vector3& response, const int objectID);
 
 
 	// handle collision detection

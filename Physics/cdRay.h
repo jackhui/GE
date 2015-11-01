@@ -11,20 +11,20 @@ class Ray : public Body
 public:
 	Ray() {}
 
-	Ray(const SIMDVector3& dir, const SIMDVector3& start)
+	Ray(const Vector3& dir, const Vector3& start)
 	{
 		m_pDir = dir;
 		m_pStart = start;
 		Body::setType(typeRAY);
 	}
 
-	SIMDVector3 getDir() const { return m_pDir; }
-	SIMDVector3 getStart() const { return m_pStart; }
-	virtual void translate(const SIMDVector3& translate);
+	Vector3 getDir() const { return m_pDir; }
+	Vector3 getStart() const { return m_pStart; }
+	virtual void translate(const Vector3& translate);
 
 private:
-	SIMDVector3 m_pDir;
-	SIMDVector3 m_pStart;
+	Vector3 m_pDir;
+	Vector3 m_pStart;
 };
 
 

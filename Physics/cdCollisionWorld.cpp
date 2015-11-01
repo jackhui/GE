@@ -1,5 +1,7 @@
 #include "cdCollisionWorld.h"
 
+
+
 void CollisionWorld::addObject(const CollidableObject & object)
 {
 	m_pObjects.push_back(object);
@@ -12,6 +14,8 @@ void CollisionWorld::addCollide(const Collide & collide)
 
 void CollisionWorld::computeCollision()
 {
+	bool value = false;
+
 	Collide collide;
 	for (int i = 0; i < m_pObjects.size(); i++)
 	{
@@ -19,8 +23,10 @@ void CollisionWorld::computeCollision()
 		{
 			collide.collision(&m_pObjects[i], &m_pObjects[j]);
 			// collide.getCollide() returns a boolean value, true means collide, false means not collide
-			if(collide.getCollide())
+			if (collide.getCollide())
 				addCollide(collide);
+				//value = true;
 		}
 	}
+	//return value;
 }

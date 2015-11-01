@@ -7,13 +7,13 @@
 #include "cdRay.h"
 
 
-void Collide::setResponseObject1(const SIMDVector3& response, const int objectID)
+void Collide::setResponseObject1(const Vector3& response, const int objectID)
 {
 	m_pResponseObject1.m_pObjectResponse = response;
 	m_pResponseObject1.m_pObjectID = objectID;
 }
 
-void Collide::setResponseObject2(const SIMDVector3& response, const int objectID)
+void Collide::setResponseObject2(const Vector3& response, const int objectID)
 {
 	m_pResponseObject2.m_pObjectResponse = response;
 	m_pResponseObject2.m_pObjectID = objectID;
@@ -60,7 +60,21 @@ void Collide::boxBoxCollide(const CollidableObject * box1, const CollidableObjec
 {
 	AABB *aabb1 = (AABB*)box1->getBody();
 	AABB *aabb2 = (AABB*)box2->getBody();
-	float maxDistance = 0.0f;
+//	float maxDistance = 0.0f;
+
+	bool collide = false;
+	// max > min min< max
+	if (aabb1->getMax().GetX() <= aabb2->getMin().GetX() &&
+		aabb1->getMin().GetX() >= aabb2->getMax().GetX() &&
+		aabb1->getMax().GetY() >= aabb2->getMin().GetY() &&
+		aabb1->getMin().GetY() <= aabb2->getMax().GetY() &&
+		aabb1->getMax().GetZ() >= aabb2->getMin().GetZ() &&
+		aabb1->getMin().GetZ() <= aabb2->getMax().GetZ())
+		collide = true;
+
+	setCollide(collide);
+	setDistance(0.0f);
+/**
 	SIMDVector3 dist1 = aabb2->getMin() - aabb1->getMax();
 	SIMDVector3 dist2 = aabb1->getMin() - aabb2->getMax();
 
@@ -93,10 +107,10 @@ void Collide::boxBoxCollide(const CollidableObject * box1, const CollidableObjec
 
 	setCollide(maxDistance < 0);
 	setDistance(maxDistance);
-
+*/
 	// compute the response vectors
-	SIMDVector3 responseObject1 = box1->getPosition() - box2->getPosition();
-	SIMDVector3 responseObject2 = box2->getPosition() - box1->getPosition();
+	Vector3 responseObject1 = box1->getPosition() - box2->getPosition();
+	Vector3 responseObject2 = box2->getPosition() - box1->getPosition();
 	setResponseObject1(responseObject1.Normalize(), box1->getObjectID());
 	setResponseObject2(responseObject2.Normalize(), box2->getObjectID());
 }
@@ -113,8 +127,8 @@ void Collide::sphereSphereCollide(const CollidableObject * sphere_1, const Colli
 	setDistance(realDist);
 
 	// compute the response vectors
-	SIMDVector3 responseObject1 = sphere_1->getPosition() - sphere_2->getPosition();
-	SIMDVector3 responseObject2 = sphere_2->getPosition() - sphere_1->getPosition();
+	Vector3 responseObject1 = sphere_1->getPosition() - sphere_2->getPosition();
+	Vector3 responseObject2 = sphere_2->getPosition() - sphere_1->getPosition();
 	setResponseObject1(responseObject1.Normalize(), sphere_1->getObjectID());
 	setResponseObject2(responseObject2.Normalize(), sphere_2->getObjectID());
 }
@@ -144,8 +158,8 @@ void Collide::pointBoxCollide(const CollidableObject * point_, const CollidableO
 	}
 
 	// compute the response vectors
-	SIMDVector3 responseObject1 = point_->getPosition() - box->getPosition();
-	SIMDVector3 responseObject2 = box->getPosition() - point_->getPosition();
+	Vector3 responseObject1 = point_->getPosition() - box->getPosition();
+	Vector3 responseObject2 = box->getPosition() - point_->getPosition();
 	setResponseObject1(responseObject1, point_->getObjectID());
 	setResponseObject2(responseObject2, box->getObjectID());
 }
@@ -162,8 +176,8 @@ void Collide::pointSphereCollide(const CollidableObject * point_, const Collidab
 	setDistance(distance - sphere->getRadius());
 
 	// compute the response vectors
-	SIMDVector3 responseObject1 = point_->getPosition() - sphere_->getPosition();
-	SIMDVector3 responseObject2 = sphere_->getPosition() - point_->getPosition();
+	Vector3 responseObject1 = point_->getPosition() - sphere_->getPosition();
+	Vector3 responseObject2 = sphere_->getPosition() - point_->getPosition();
 	setResponseObject1(responseObject1, point_->getObjectID());
 	setResponseObject2(responseObject2, sphere_->getObjectID());
 }
@@ -172,7 +186,7 @@ void Collide::raySphereCollide(const CollidableObject * ray_, const CollidableOb
 {
 	Ray *ray = (Ray*)ray_->getBody();
 	Sphere *sphere = (Sphere*)sphere_->getBody();
-	SIMDVector3 vec = ray->getStart() - sphere->getCenter();
+	Vector3 vec = ray->getStart() - sphere->getCenter();
 	setCollide(true);
 	setDistance(0.0f);
 	float fB = vec.Dot(ray->getDir());
@@ -184,8 +198,8 @@ void Collide::raySphereCollide(const CollidableObject * ray_, const CollidableOb
 		setCollide(false);
 
 	// compute the response vectors
-	SIMDVector3 responseObject1 = ray_->getPosition() - sphere_->getPosition();
-	SIMDVector3 responseObject2 = sphere_->getPosition() - ray_->getPosition();
+	Vector3 responseObject1 = ray_->getPosition() - sphere_->getPosition();
+	Vector3 responseObject2 = sphere_->getPosition() - ray_->getPosition();
 	setResponseObject1(responseObject1, ray_->getObjectID());
 	setResponseObject2(responseObject2, sphere_->getObjectID());
 }
