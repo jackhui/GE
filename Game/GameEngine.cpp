@@ -9,6 +9,7 @@
 #include "..\Physics\cdSphere.h"
 #include "..\Physics\cdObject.h"
 #include "..\Physics\cdAabb.h"
+#include "..\GameObject\GameObject.h"
 
 typedef SIMDVector3 Vector3;
 
@@ -149,31 +150,26 @@ void GameEngine::Start(HINSTANCE hInst)
 		{ Vector3(-3.0f, -3.0f, 1.0f),		Vector3(1.0f, 1.5f, 2.0f) }
 	};
 
-	Vector3 origin1(0.0f, 5.0f, 0.0f);
-	Vector3 origin2(0.0f, -5.0f, 0.0f);
-	Vector3 dimension(1.0f, 1.0f, 1.0f);
+	float arr[4][4];
+	float arr1[4][4];
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			arr[i][j] = 0.0f;
+			arr1[i][j] = 0.0f;
+		}
+	}
+	arr[0][3] = -0.5f;
 
-	float aabb[6];
-	aabb[0] = origin1.GetX() + dimension.GetX() / 2;
-	aabb[1] = origin1.GetY() - dimension.GetY() / 2;
-	aabb[2] = origin1.GetZ() + dimension.GetZ() / 2;
-	aabb[3] = origin1.GetX() - dimension.GetX() / 2;
-	aabb[4] = origin1.GetY() + dimension.GetY() / 2;
-	aabb[5] = origin1.GetZ() - dimension.GetZ() / 2;
+	arr1[0][3] = 0.5f;
 
-	Vector3 min1(aabb[0], aabb[1], aabb[2]);
-	Vector3 max1(aabb[3], aabb[4], aabb[5]);
+	Matrix4 transform(arr);
+	Matrix4 transform1(arr1);
 
-	float aabb1[6];
-	aabb1[0] = origin2.GetX() + dimension.GetX() / 2;
-	aabb1[1] = origin2.GetY() - dimension.GetY() / 2;
-	aabb1[2] = origin2.GetZ() + dimension.GetZ() / 2;
-	aabb1[3] = origin2.GetX() - dimension.GetX() / 2;
-	aabb1[4] = origin2.GetY() + dimension.GetY() / 2;
-	aabb1[5] = origin2.GetZ() - dimension.GetZ() / 2;
-
-	Vector3 min2(aabb1[0], aabb1[1], aabb1[2]);
-	Vector3 max2(aabb1[3], aabb1[4], aabb1[5]);
+	Vector3 origin1(6.0f, 0.0f, 0.0f);
+	Vector3 origin2(-8.0f, 2.0f, -2.0f);
+	Vector3 dimension(2.01f, 2.01f, 2.01f);
 
 	Debug debug;
 	//Two vertices
@@ -193,72 +189,27 @@ void GameEngine::Start(HINSTANCE hInst)
 		debug.draw_prism(Vector3(translate, translate, translate), vertices[2][1], Primitives::CYLINDER);
 	}
 */
-	debug.draw_ellipsoid(Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
-	debug.draw_ellipsoid(Vector3(-5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
+//	debug.draw_ellipsoid(Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
+//	debug.draw_ellipsoid(Vector3(-5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
 	
-//	debug.draw_prism(origin1, dimension, Primitives::RECTANGULAR_PRISM);
-//	debug.draw_prism(origin2, dimension, Primitives::RECTANGULAR_PRISM);
+	debug.draw_prism(origin1, dimension, Primitives::RECTANGULAR_PRISM);
+	debug.draw_prism(origin2, dimension, Primitives::RECTANGULAR_PRISM);
 
 	// GameObject* array[1]
 	//array[0] = new GamObject(blah blah blah);
 	
-
-	// collision world testing start
-	CollisionWorld world;
-	Sphere sphere1(Vector3(5.0f, 0.0f, 0.0f), 1.0f);
-	Sphere sphere2(Vector3(-5.0f, 0.0f, 0.0f), 1.0f);
-	CollidableObject object1(&sphere1, 0);
-	CollidableObject object2(&sphere2, 1);
-	world.addObject(object1);
-	world.addObject(object2);
 	Vector3 velocity1(-0.5f, 0.0f, 0.0f);
 	Vector3 velocity2(0.5f, 0.0f, 0.0f);
-	
-	Vector3 velocity4(0.0f, 0.5f, 0.0f);
 
 
-	AABB aabb_1(min1, max1);
-	AABB aabb_2(min2, max2);
-//	CollidableObject object3(&aabb_1, 2);
-//	CollidableObject object4(&aabb_2, 3);
-	//world.addObject(object3);
-	//.addObject(object4);
+	AABB aabb1;
+	AABB aabb2;
+	aabb1.computeAABB(origin1, dimension);
+	aabb2.computeAABB(origin2, dimension);
+	GameObject gameObj1(&CollidableObject(&aabb1, velocity1, 2), nullptr, nullptr, transform);
+	GameObject gameObj2(&CollidableObject(&aabb2, velocity1, 3), nullptr, nullptr, transform1);
 
-
-	// collision world testing end
-
-
-	Font font;
-	char s[64], p[64];
-
-	sprintf(s, "%f, %f, %f, %f, %f, %f", min1.GetX(), min1.GetY(), min1.GetZ(),
-		max1.GetX(), max1.GetY(), max1.GetZ());
-	sprintf(p, "%f, %f, %f, %f, %f, %f", min2.GetX(), min2.GetY(), min2.GetZ(),
-		max2.GetX(), max2.GetY(), max2.GetZ());
-	font.write(s, 6.0f, 6.0f);
-	font.write(p, 6.0f, 4.0f);
-
-//	font.write("JACKHSK", 6.0f, -2.0f);	 //All supported characters
-//	font.write("Elegant Engine", 0.0f, 0.0f);
-/**
-	//Import .obj object
-	ObjectLoader objectLoader("CityColony");
-	if (objectLoader.LoadWaveFrontObject(0.01f)) {
-		objectLoader.Draw();
-	}
-*/
-	/*
-	for (std::vector<MeshInstance*>::iterator itr = D3D11Renderer::GetInstance()->GetMeshInstanceList().begin();
-		itr < D3D11Renderer::GetInstance()->GetMeshInstanceList().end();
-		itr++
-	) {
-		(*itr)->Transform(
-			new float(1.0f),						//scaling
-			&(Vector3(0.0f, 0.0f, 0.0f)),			//rotation
-			&(Vector3(0.0f, 0.0f, -15.0f))			//translation
-		);
-	}
-	*/
+	Font show;
 
 	// Show the window
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
@@ -292,14 +243,17 @@ void GameEngine::Start(HINSTANCE hInst)
 				&(Vector3(0.0f, 0.0f, 0.0f)),			//rotation
 				&(velocity1)			//translation
 			);
-			sphere1.translate(Vector3(-0.5f, 0.0f, 0.0f));
+			//sphere1.translate(Vector3(-0.5f, 0.0f, 0.0f));
+			gameObj1.Update(0.0f);
+
 			
 			m1->Transform(
 				new float(1.0f),						//scaling
 				&(Vector3(0.0f, 0.0f, 0.0f)),			//rotation
 				&(velocity2)			//translation
 			);
-			sphere2.translate(Vector3(0.5f, 0.0f, 0.0f));
+			//sphere2.translate(Vector3(0.5f, 0.0f, 0.0f));
+			gameObj2.Update(0.0f);
 /**			
 
 			m2->Transform(
@@ -314,7 +268,7 @@ void GameEngine::Start(HINSTANCE hInst)
 				&(velocity4)			//translation
 				);
 			aabb_2.translate(velocity4);
-*/		
+		
 			world.computeCollision();
 			sprintf(p, "%d", world.getCollideSize());
 			font.write(p, 6.0f, 6.0f);
@@ -326,9 +280,22 @@ void GameEngine::Start(HINSTANCE hInst)
 				velocity4.SetY(-0.5f);
 				
 			}
+*/
+			if (gameObj1.isCollided(&gameObj2))
+			{
+				show.write("gameObject1 and 2 collided", 5.0f, 0.0f);
+				transform.setTranslate(0.5f, 0.0f, 0.0f);
+				transform1.setTranslate(-0.5f, 0.0f, 0.0f);
+				gameObj1.setTransform(transform1);
+				gameObj2.setTransform(transform);
+				velocity1.SetX(0.5f);
+				velocity2.SetX(-0.5f);
+
+			//	printf("x: %f, y: %f, z: %f\n", velocity2.GetX(), velocity2.GetY(), velocity2.GetZ());
+			}
 
 			// Update the game world based on delta time
-			D3D11Renderer::GetInstance()->Update();
+//			D3D11Renderer::GetInstance()->Update();
 
 			// Render this frame
 			D3D11Renderer::GetInstance()->Render();

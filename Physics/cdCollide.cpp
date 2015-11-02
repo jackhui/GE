@@ -9,14 +9,14 @@
 
 void Collide::setResponseObject1(const Vector3& response, const int objectID)
 {
-	m_pResponseObject1.m_pObjectResponse = response;
-	m_pResponseObject1.m_pObjectID = objectID;
+	m_ResponseObject1.m_pObjectResponse = response;
+	m_ResponseObject1.m_pObjectID = objectID;
 }
 
 void Collide::setResponseObject2(const Vector3& response, const int objectID)
 {
-	m_pResponseObject2.m_pObjectResponse = response;
-	m_pResponseObject2.m_pObjectID = objectID;
+	m_ResponseObject2.m_pObjectResponse = response;
+	m_ResponseObject2.m_pObjectID = objectID;
 }
 
 void Collide::collision(const CollidableObject * object1, const CollidableObject * object2)
@@ -64,12 +64,12 @@ void Collide::boxBoxCollide(const CollidableObject * box1, const CollidableObjec
 
 	bool collide = false;
 	// max > min min< max
-	if (aabb1->getMax().GetX() <= aabb2->getMin().GetX() &&
-		aabb1->getMin().GetX() >= aabb2->getMax().GetX() &&
-		aabb1->getMax().GetY() >= aabb2->getMin().GetY() &&
-		aabb1->getMin().GetY() <= aabb2->getMax().GetY() &&
-		aabb1->getMax().GetZ() >= aabb2->getMin().GetZ() &&
-		aabb1->getMin().GetZ() <= aabb2->getMax().GetZ())
+	if (aabb1->getMax().GetX() < aabb2->getMin().GetX() &&
+		aabb1->getMin().GetX() > aabb2->getMax().GetX() &&
+		aabb1->getMax().GetY() > aabb2->getMin().GetY() &&
+		aabb1->getMin().GetY() < aabb2->getMax().GetY() &&
+		aabb1->getMax().GetZ() < aabb2->getMin().GetZ() &&
+		aabb1->getMin().GetZ() > aabb2->getMax().GetZ())
 		collide = true;
 
 	setCollide(collide);

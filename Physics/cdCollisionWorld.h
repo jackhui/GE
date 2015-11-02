@@ -3,22 +3,26 @@
 #include <vector>
 #include "cdObject.h"
 #include "cdCollide.h"
+class CollidableObject;
 
+#pragma once
 
 class CollisionWorld
 {
 public:
+	
+
 	CollisionWorld() {}
-	void addObject(const CollidableObject& object);
-	void addCollide(const Collide& collide);
-	int getObjectSize() const { return m_pObjects.size(); }
-	int getCollideSize() const { return m_pCollide.size(); }
-	void computeCollision();
+
+	CollisionWorld* GetInstance();
+
+	std::vector<CollidableObject*>& getObjectList();
+	
 
 private:
-	std::vector<CollidableObject> m_pObjects;
-	std::vector<Collide> m_pCollide;
-
+	CollisionWorld*						m_pInstance;
+	std::vector<CollidableObject*>		m_ObjectList;
+	
 };
 
 

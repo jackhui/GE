@@ -2,10 +2,10 @@
 
 void Point::translate(const Vector3 & translate)
 {
-	m_pPoint += translate;
+	m_Point += translate;
 }
 
 const Vector3 Point::getCenter()
 {
-	return m_pPoint;
+	return m_Point;
 }

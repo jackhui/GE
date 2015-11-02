@@ -1,7 +1,6 @@
 #include "cdCollisionWorld.h"
 
-
-
+/**
 void CollisionWorld::addObject(const CollidableObject & object)
 {
 	m_pObjects.push_back(object);
@@ -29,4 +28,19 @@ void CollisionWorld::computeCollision()
 		}
 	}
 	//return value;
+}
+*/
+
+CollisionWorld * CollisionWorld::GetInstance()
+{
+	if (!m_pInstance)
+	{
+		m_pInstance = new CollisionWorld();
+	}
+	return m_pInstance;
+}
+
+std::vector<CollidableObject*>& CollisionWorld::getObjectList()
+{
+	return m_ObjectList;
 }

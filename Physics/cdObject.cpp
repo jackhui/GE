@@ -1,24 +1,22 @@
 #include "cdObject.h"
 
 
+CollidableObject::CollidableObject(Body * body, const Vector3& translate, const int objectID)
+{
+	m_pBody = body;
+	m_ObjectID = objectID;
+	m_Translate = translate;
+	//CollisionWorld::GetInstance()->getObjectList().push_back(this);
+}
+
 Body * CollidableObject::getBody() const
 {
 	return m_pBody;
 }
 
-void CollidableObject::SetPosition(Vector3 position)
+void CollidableObject::translate(Vector3& translate)
 {
-	m_pPos = position;
-}
-
-void CollidableObject::simulate(const int cycle)
-{
-	/**
-	for (int i = 0; i < cycle; i++)
-	{
-		m_pBody->translate(m_pVelocity);
-	}
-	*/
+	m_pBody->translate(translate);
 }
 
 void CollidableObject::update()

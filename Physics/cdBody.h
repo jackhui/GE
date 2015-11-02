@@ -25,22 +25,22 @@ class Body
 public:
 	Body()
 	{
-		m_pType = -1;
+		m_Type = -1;
 	}
 
 	Body(const int type)
 	{
-		m_pType = type;
+		m_Type = type;
 	}
 
-	int getType() const { return m_pType; }
-	void setType(const int type) { m_pType = type; }
+	int getType() const { return m_Type; }
+	void setType(const int type) { m_Type = type; }
 	Vector3 getCenter() const;
 	virtual void computeAABB(const Matrix4& transform) {}
 	virtual void translate(const Vector3& translate) {}
 
 private:
-	int m_pType;
+	int m_Type;
 };
 
 

@@ -8,12 +8,12 @@
 Vector3 Body::getCenter() const
 {
 	Vector3 center;
-	if (m_pType == typeAABB)
+	if (m_Type == typeAABB)
 	{
 		AABB* self = (AABB*) this;
 		center = (Vector3)self->getCenter();
 	}
-	else if (m_pType == typeSPHERE)
+	else if (m_Type == typeSPHERE)
 	{
 		Sphere* self = (Sphere*) this;
 		center = (Vector3)self->getCenter();

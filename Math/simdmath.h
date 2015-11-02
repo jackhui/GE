@@ -41,6 +41,16 @@ public:
 		_rows[2] = data[2];
 		_rows[3] = data[3];
 	}
+
+	// Set the translation
+	inline void setTranslate(const float& x, const float& y, const float& z)
+	{
+		_rows[0].m128_f32[3] = x;
+		_rows[1].m128_f32[3] = y;
+		_rows[2].m128_f32[3] = z;
+	}
+
+
 	// get translate vector x, y, z
 	inline float getTranslateX() const
 	{

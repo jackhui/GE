@@ -353,16 +353,20 @@ TEST(Matrix, getMatrix)
 
 TEST(collideWorld, box2box)
 {
-	Vector3 p1(0.5f, 0.0f, 0.5f);
-	Vector3 p2(-0.5f, 1.0f, -0.5f);
-	Vector3 p3(0.5f, 0.0f, 0.5f);
-	Vector3 p4(-0.5f, 1.1f, -0.5f);
+	Vector3 p1(1.0f, -1.0f, 1.0f);
+	Vector3 p2(-1.01f, 1.01f, -1.01f);
+	Vector3 p3(-1.0f, 1.0f, -1.0f);
+	Vector3 p4(-3.0f, 3.0f, -3.0f);
 	AABB aabb1(p1, p2);
 	AABB aabb2(p3, p4);
 	CollidableObject object1(&aabb1, p1, 0);
 	CollidableObject object2(&aabb2, p1, 1);
 	Collide collide;
 
+	collide.collision(&object1, &object2);
+
+	EXPECT_TRUE(collide.getCollide());
+/**
 	CollisionWorld world;
 	world.addObject(object1);
 	world.addObject(object2);
@@ -370,6 +374,7 @@ TEST(collideWorld, box2box)
 
 	printf("# of objects: %d\n", world.getObjectSize());
 	printf("# of collides: %d\n", world.getCollideSize());
+*/
 }
 
 TEST(collideWorld, sphere2sphere)
@@ -383,7 +388,7 @@ TEST(collideWorld, sphere2sphere)
 	CollidableObject object1(&sphere1, p1, 0);
 	CollidableObject object2(&sphere2, p1, 1);
 	Collide collide;
-
+/**
 	CollisionWorld world;
 	world.addObject(object1);
 	world.addObject(object2);
@@ -391,6 +396,7 @@ TEST(collideWorld, sphere2sphere)
 
 	printf("# of objects: %d\n", world.getObjectSize());
 	printf("# of collides: %d\n", world.getCollideSize());
+*/
 }
 
 TEST(collideWorld, ray2sphere)
@@ -403,6 +409,7 @@ TEST(collideWorld, ray2sphere)
 	Ray ray(p1, vecDir);
 	CollidableObject object1(&ray, p1, 0);
 	CollidableObject object2(&sphere, p1, 1);
+/*
 	CollisionWorld world;
 	world.addObject(object1);
 	world.addObject(object2);
@@ -410,6 +417,7 @@ TEST(collideWorld, ray2sphere)
 
 	printf("# of objects: %d\n", world.getObjectSize());
 	printf("# of collides: %d\n", world.getCollideSize());
+	*/
 }
 
 // Collision Test End

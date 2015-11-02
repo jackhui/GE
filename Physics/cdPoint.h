@@ -12,16 +12,16 @@ public:
 
 	Point(const Vector3& point)
 	{
-		m_pPoint = point;
+		m_Point = point;
 		Body::setType(typePOINT);
 	}
 
-	Vector3 getPoint() const { return m_pPoint; }
+	Vector3 getPoint() const { return m_Point; }
 	virtual void translate(const Vector3& translate);
 	const Vector3 getCenter();
 
 private:
-	Vector3 m_pPoint;
+	Vector3 m_Point;
 };
 
 #endif POINT_H

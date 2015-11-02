@@ -4,8 +4,7 @@
 
 #include "cdBody.h"
 #include "..\Math\simdmath.h"
-//#include "..\Physics\cdCollisionWorld.h"
-//class CollisionWorld;
+#include "..\Physics\cdCollisionWorld.h"
 
 typedef SIMDVector3 Vector3;
 typedef SIMDMatrix4 Matrix4;
@@ -15,35 +14,20 @@ class CollidableObject
 public:
 	CollidableObject(){}
 
-	CollidableObject(Body* body, const int objectID) :
-		m_pPos(body->getCenter()),
-		m_pCurrent(body->getCenter()),
-//		m_pVelocity(velocity),
-		m_pBody(body),
-		m_pObjectID(objectID) 
-	{
-//		CollisionWorld::getInstance()->getObjectList().push_back(*this);
-	}
+	CollidableObject(Body* body, const Vector3& translate, const int objectID);
 
-
-
-	Vector3 getPosition() const { return m_pPos; }
-//	SIMDVector3 getVelocity() const { return m_pVelocity; }
-	int getObjectID() const { return m_pObjectID; }
+	int getObjectID() const { return m_ObjectID; }
 	Body* getBody() const;
-	//void translate(const SIMDMatrix4 translate);
-	void SetPosition(Vector3 position);
-
-	void simulate(const int cycle);
+	void translate(Vector3& translate);
+	Vector3 getPosition() const { return m_pBody->getCenter(); }
 
 	void update();
 
 private:
-	SIMDVector3 m_pPos;
-	SIMDVector3 m_pCurrent;
-//	SIMDVector3 m_pVelocity;
-	Body* m_pBody;
-	int m_pObjectID;
+	Body*			m_pBody;
+	Vector3			m_Translate;
+	int				m_ObjectID;
+
 	// int EntityIO;
 };
 

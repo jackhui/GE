@@ -4,5 +4,5 @@
 
 void Sphere::translate(const Vector3 & translate)
 {
-	m_pCenter += translate;
+	m_Center += translate;
 }
