@@ -17,7 +17,7 @@ public:
 	}
 
 	Vector3 getPoint() const { return m_Point; }
-	virtual void translate(const Vector3& translate);
+	virtual void update(const float deltaTime, const Vector3& translate);
 	const Vector3 getCenter();
 
 private:

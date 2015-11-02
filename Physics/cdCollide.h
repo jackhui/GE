@@ -4,8 +4,9 @@
 
 #include "../Math/simdmath.h"
 #include "cdObject.h"
+#include "cdBody.h"
 
-class CollidableObject;
+class Body;
 typedef SIMDVector3 Vector3;
 typedef SIMDMatrix4 Matrix4;
 
@@ -28,19 +29,19 @@ public:
 	const Response getResponseObject2() const { return m_ResponseObject2; }
 	void setCollide(bool collide) { m_Collide = collide; }
 	void setDistance(float distance) { m_Distance = distance; }
-	void setResponseObject1(const Vector3& response, const int objectID);
-	void setResponseObject2(const Vector3& response, const int objectID);
+	void setResponseObject1(const Vector3& response);
+	void setResponseObject2(const Vector3& response);
 
 
 	// handle collision detection
-	void collision(const CollidableObject* object1, const CollidableObject* object2);
-	void boxBoxCollide(const CollidableObject* box1, const CollidableObject* box2);
-	void sphereSphereCollide(const CollidableObject* sphere1, const CollidableObject* sphere2);
-	void boxSphereCollide(const CollidableObject* box, const CollidableObject* sphere);
-	void pointBoxCollide(const CollidableObject* point, const CollidableObject* box);
-	void pointSphereCollide(const CollidableObject* point, const CollidableObject* sphere);
-	void raySphereCollide(const CollidableObject* ray, const CollidableObject* sphere);
-	void rayBoxCollide(const CollidableObject* ray, const CollidableObject* box);
+	void collision(const Body* object1, const Body* object2);
+	void boxBoxCollide(const Body* box1, const Body* box2);
+	void sphereSphereCollide(const Body* sphere1, const Body* sphere2);
+	void boxSphereCollide(const Body* box, const Body* sphere);
+	void pointBoxCollide(const Body* point, const Body* box);
+	void pointSphereCollide(const Body* point, const Body* sphere);
+	void raySphereCollide(const Body* ray, const Body* sphere);
+	void rayBoxCollide(const Body* ray, const Body* box);
 
 
 private:

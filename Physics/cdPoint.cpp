@@ -1,8 +1,10 @@
 #include "cdPoint.h"
 
-void Point::translate(const Vector3 & translate)
+void Point::update(const float deltaTime, const Vector3 & translate)
 {
-	m_Point += translate;
+	Vector3 tran = translate;
+	tran.Multiply(deltaTime);
+	m_Point += tran;
 }
 
 const Vector3 Point::getCenter()

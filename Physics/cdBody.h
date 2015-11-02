@@ -37,7 +37,8 @@ public:
 	void setType(const int type) { m_Type = type; }
 	Vector3 getCenter() const;
 	virtual void computeAABB(const Matrix4& transform) {}
-	virtual void translate(const Vector3& translate) {}
+
+	virtual void update(const float deltaTime, const Vector3& translate) {}
 
 private:
 	int m_Type;

@@ -107,6 +107,9 @@
     <ClCompile Include="..\GameObject\GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\GameObject\GameWorld.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\texture.hlsl">
@@ -221,6 +224,9 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameObject\GameWorld.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>

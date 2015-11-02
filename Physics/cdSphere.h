@@ -27,7 +27,7 @@ public:
 	Vector3  getCenter() const { return m_Center; }
 	float getRadius() const { return m_Radius; }
 
-	virtual void translate(const Vector3 & translate);
+	virtual void update(const float deltaTime, const Vector3 & translate);
 
 private:
 	// the position of the center of the sphere

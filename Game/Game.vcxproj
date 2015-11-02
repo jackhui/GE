@@ -143,6 +143,7 @@
     <ClCompile Include="..\Debug\Debug.cpp" />
     <ClCompile Include="..\Font\font.cpp" />
     <ClCompile Include="..\GameObject\GameObject.cpp" />
+    <ClCompile Include="..\GameObject\GameWorld.cpp" />
     <ClCompile Include="..\Graphics\D3D11Renderer.cpp" />
     <ClCompile Include="..\Graphics\IndexBufferEngine.cpp" />
     <ClCompile Include="..\Graphics\MeshData.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="..\Debug\Debug.h" />
     <ClInclude Include="..\Font\font.h" />
     <ClInclude Include="..\GameObject\GameObject.h" />
+    <ClInclude Include="..\GameObject\GameWorld.h" />
     <ClInclude Include="..\Graphics\D3D11Renderer.h" />
     <ClInclude Include="..\Graphics\IndexBufferEngine.h" />
     <ClInclude Include="..\Graphics\MeshData.h" />

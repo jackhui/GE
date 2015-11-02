@@ -7,59 +7,57 @@
 #include "cdRay.h"
 
 
-void Collide::setResponseObject1(const Vector3& response, const int objectID)
+void Collide::setResponseObject1(const Vector3& response)
 {
 	m_ResponseObject1.m_pObjectResponse = response;
-	m_ResponseObject1.m_pObjectID = objectID;
 }
 
-void Collide::setResponseObject2(const Vector3& response, const int objectID)
+void Collide::setResponseObject2(const Vector3& response)
 {
 	m_ResponseObject2.m_pObjectResponse = response;
-	m_ResponseObject2.m_pObjectID = objectID;
 }
 
-void Collide::collision(const CollidableObject * object1, const CollidableObject * object2)
+void Collide::collision(const Body * body1, const Body * body2)
 {
-	if (object1->getBody()->getType() == typeAABB && object2->getBody()->getType() == typeAABB)
-		boxBoxCollide(object1, object2);
-	else if (object1->getBody()->getType() == typeSPHERE && object2->getBody()->getType() == typeSPHERE)
-		sphereSphereCollide(object1, object2);
+	if (body1->getType() == typeAABB && body2->getType() == typeAABB)
+		boxBoxCollide(body1, body2);
+	else if (body1->getType() == typeSPHERE && body2->getType() == typeSPHERE)
+		sphereSphereCollide(body1, body2);
 	// box vs sphere OR sphere vs box
-	else if (object1->getBody()->getType() == typeAABB && object2->getBody()->getType() == typeSPHERE)
-		boxSphereCollide(object1, object2);
-	else if (object1->getBody()->getType() == typeSPHERE && object2->getBody()->getType() == typeAABB)
-		boxSphereCollide(object2, object1);
+	else if (body1->getType() == typeAABB && body2->getType() == typeSPHERE)
+		boxSphereCollide(body1, body2);
+	else if (body1->getType() == typeSPHERE && body2->getType() == typeAABB)
+		boxSphereCollide(body2, body1);
 	// point vs box OR box vs point
-	else if (object1->getBody()->getType() == typePOINT && object2->getBody()->getType() == typeAABB)
-		pointBoxCollide(object1, object2);
-	else if (object1->getBody()->getType() == typeAABB && object2->getBody()->getType() == typePOINT)
-		pointBoxCollide(object2, object1);
+	else if (body1->getType() == typePOINT && body2->getType() == typeAABB)
+		pointBoxCollide(body1, body2);
+	else if (body1->getType() == typeAABB && body2->getType() == typePOINT)
+		pointBoxCollide(body2, body1);
 	// point vs sphere OR sphere vs point
-	else if (object1->getBody()->getType() == typePOINT && object2->getBody()->getType() == typeSPHERE)
-		pointSphereCollide(object1, object2);
-	else if (object1->getBody()->getType() == typeSPHERE && object2->getBody()->getType() == typePOINT)
-		pointSphereCollide(object2, object1);
+	else if (body1->getType() == typePOINT && body2->getType() == typeSPHERE)
+		pointSphereCollide(body1, body2);
+	else if (body1->getType() == typeSPHERE && body2->getType() == typePOINT)
+		pointSphereCollide(body2, body1);
 	// ray vs sphere OR sphere vs ray
-	else if (object1->getBody()->getType() == typeRAY && object2->getBody()->getType() == typeSPHERE)
-		raySphereCollide(object1, object2);
-	else if (object1->getBody()->getType() == typeSPHERE && object2->getBody()->getType() == typeRAY)
-		raySphereCollide(object2, object1);
+	else if (body1->getType() == typeRAY && body2->getType() == typeSPHERE)
+		raySphereCollide(body1, body2);
+	else if (body1->getType() == typeSPHERE && body2->getType() == typeRAY)
+		raySphereCollide(body2, body1);
 	// ray vs box OR box vs ray
-	else if (object1->getBody()->getType() == typeRAY && object2->getBody()->getType() == typeAABB)
-		rayBoxCollide(object1, object2);
-	else if (object1->getBody()->getType() == typeAABB && object2->getBody()->getType() == typeRAY)
-		rayBoxCollide(object2, object1);
+	else if (body1->getType() == typeRAY && body2->getType() == typeAABB)
+		rayBoxCollide(body1, body2);
+	else if (body1->getType() == typeAABB && body2->getType() == typeRAY)
+		rayBoxCollide(body2, body1);
 	else
 		printf("no match object type!");
 
 }
 
 
-void Collide::boxBoxCollide(const CollidableObject * box1, const CollidableObject * box2)
+void Collide::boxBoxCollide(const Body * box1, const Body * box2)
 {
-	AABB *aabb1 = (AABB*)box1->getBody();
-	AABB *aabb2 = (AABB*)box2->getBody();
+	AABB *aabb1 = (AABB*)box1;
+	AABB *aabb2 = (AABB*)box2;
 //	float maxDistance = 0.0f;
 
 	bool collide = false;
@@ -109,16 +107,16 @@ void Collide::boxBoxCollide(const CollidableObject * box1, const CollidableObjec
 	setDistance(maxDistance);
 */
 	// compute the response vectors
-	Vector3 responseObject1 = box1->getPosition() - box2->getPosition();
-	Vector3 responseObject2 = box2->getPosition() - box1->getPosition();
-	setResponseObject1(responseObject1.Normalize(), box1->getObjectID());
-	setResponseObject2(responseObject2.Normalize(), box2->getObjectID());
+	Vector3 responseObject1 = box1->getCenter() - box2->getCenter();
+	Vector3 responseObject2 = box2->getCenter() - box1->getCenter();
+	setResponseObject1(responseObject1.Normalize());
+	setResponseObject2(responseObject2.Normalize());
 }
 
-void Collide::sphereSphereCollide(const CollidableObject * sphere_1, const CollidableObject * sphere_2)
+void Collide::sphereSphereCollide(const Body * sphere_1, const Body * sphere_2)
 {
-	Sphere *sphere1 = (Sphere*)sphere_1->getBody();
-	Sphere *sphere2 = (Sphere*)sphere_2->getBody();
+	Sphere *sphere1 = (Sphere*)sphere_1;
+	Sphere *sphere2 = (Sphere*)sphere_2;
 	float realDist = 0.0f;
 	float radiusDist = sphere1->getRadius() + sphere2->getRadius();
 	float centerDist = (sphere1->getCenter() - sphere2->getCenter()).Length();
@@ -127,20 +125,20 @@ void Collide::sphereSphereCollide(const CollidableObject * sphere_1, const Colli
 	setDistance(realDist);
 
 	// compute the response vectors
-	Vector3 responseObject1 = sphere_1->getPosition() - sphere_2->getPosition();
-	Vector3 responseObject2 = sphere_2->getPosition() - sphere_1->getPosition();
-	setResponseObject1(responseObject1.Normalize(), sphere_1->getObjectID());
-	setResponseObject2(responseObject2.Normalize(), sphere_2->getObjectID());
+	Vector3 responseObject1 = sphere_1->getCenter() - sphere_2->getCenter();
+	Vector3 responseObject2 = sphere_2->getCenter() - sphere_1->getCenter();
+	setResponseObject1(responseObject1.Normalize());
+	setResponseObject2(responseObject2.Normalize());
 }
 
-void Collide::boxSphereCollide(const CollidableObject * box, const CollidableObject * sphere)
+void Collide::boxSphereCollide(const Body * box, const Body * sphere)
 {
 }
 
-void Collide::pointBoxCollide(const CollidableObject * point_, const CollidableObject * box)
+void Collide::pointBoxCollide(const Body * point_, const Body * box)
 {
-	Point *point = (Point*)point_->getBody();
-	AABB *aabb = (AABB*)box->getBody();
+	Point *point = (Point*)point_;
+	AABB *aabb = (AABB*)box;
 
 	if (point->getPoint().GetX() > aabb->getMin().GetX() && point->getPoint().GetX() < aabb->getMax().GetX() &&
 		point->getPoint().GetY() > aabb->getMin().GetY() && point->getPoint().GetY() < aabb->getMax().GetY() &&
@@ -158,16 +156,16 @@ void Collide::pointBoxCollide(const CollidableObject * point_, const CollidableO
 	}
 
 	// compute the response vectors
-	Vector3 responseObject1 = point_->getPosition() - box->getPosition();
-	Vector3 responseObject2 = box->getPosition() - point_->getPosition();
-	setResponseObject1(responseObject1, point_->getObjectID());
-	setResponseObject2(responseObject2, box->getObjectID());
+	Vector3 responseObject1 = point_->getCenter() - box->getCenter();
+	Vector3 responseObject2 = box->getCenter() - point_->getCenter();
+	setResponseObject1(responseObject1);
+	setResponseObject2(responseObject2);
 }
 
-void Collide::pointSphereCollide(const CollidableObject * point_, const CollidableObject * sphere_)
+void Collide::pointSphereCollide(const Body * point_, const Body * sphere_)
 {
-	Point *point = (Point*)point_->getBody();
-	Sphere *sphere = (Sphere*)sphere_->getBody();
+	Point *point = (Point*)point_;
+	Sphere *sphere = (Sphere*)sphere_;
 
 	float distance = 0.0f;
 	distance = (point->getPoint() - sphere->getCenter()).Length();
@@ -176,16 +174,16 @@ void Collide::pointSphereCollide(const CollidableObject * point_, const Collidab
 	setDistance(distance - sphere->getRadius());
 
 	// compute the response vectors
-	Vector3 responseObject1 = point_->getPosition() - sphere_->getPosition();
-	Vector3 responseObject2 = sphere_->getPosition() - point_->getPosition();
-	setResponseObject1(responseObject1, point_->getObjectID());
-	setResponseObject2(responseObject2, sphere_->getObjectID());
+	Vector3 responseObject1 = point_->getCenter() - sphere_->getCenter();
+	Vector3 responseObject2 = sphere_->getCenter() - point_->getCenter();
+	setResponseObject1(responseObject1);
+	setResponseObject2(responseObject2);
 }
 
-void Collide::raySphereCollide(const CollidableObject * ray_, const CollidableObject * sphere_)
+void Collide::raySphereCollide(const Body * ray_, const Body * sphere_)
 {
-	Ray *ray = (Ray*)ray_->getBody();
-	Sphere *sphere = (Sphere*)sphere_->getBody();
+	Ray *ray = (Ray*)ray_;
+	Sphere *sphere = (Sphere*)sphere_;
 	Vector3 vec = ray->getStart() - sphere->getCenter();
 	setCollide(true);
 	setDistance(0.0f);
@@ -198,12 +196,12 @@ void Collide::raySphereCollide(const CollidableObject * ray_, const CollidableOb
 		setCollide(false);
 
 	// compute the response vectors
-	Vector3 responseObject1 = ray_->getPosition() - sphere_->getPosition();
-	Vector3 responseObject2 = sphere_->getPosition() - ray_->getPosition();
-	setResponseObject1(responseObject1, ray_->getObjectID());
-	setResponseObject2(responseObject2, sphere_->getObjectID());
+	Vector3 responseObject1 = ray_->getCenter()- sphere_->getCenter();
+	Vector3 responseObject2 = sphere_->getCenter() - ray_->getCenter();
+	setResponseObject1(responseObject1);
+	setResponseObject2(responseObject2);
 }
 
-void Collide::rayBoxCollide(const CollidableObject * ray, const CollidableObject * box)
+void Collide::rayBoxCollide(const Body * ray, const Body * box)
 {
 }

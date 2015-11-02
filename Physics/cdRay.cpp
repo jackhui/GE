@@ -1,6 +1,8 @@
 #include "cdRay.h"
 
-void Ray::translate(const Vector3 & translate)
+void Ray::update(const float deltaTime, const Vector3 & translate)
 {
-	m_Start += translate;
+	Vector3 tran = translate;
+	tran.Multiply(deltaTime);
+	m_Start += tran;
 }

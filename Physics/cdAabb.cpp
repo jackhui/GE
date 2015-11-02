@@ -58,10 +58,12 @@ const Vector3 AABB::getCenter()
 	return m_pCenter;
 }
 
-void AABB::translate(const Vector3 & translate)
+void AABB::update(const float deltaTime, const Vector3 & translate)
 {
-	m_Max += translate;
-	m_Min += translate;
+	Vector3 tran = translate;
+	tran.Multiply(deltaTime);
+	m_Max += tran;
+	m_Min += tran;
 }
 
 

@@ -20,7 +20,7 @@ public:
 
 	Vector3 getDir() const { return m_Dir; }
 	Vector3 getStart() const { return m_Start; }
-	virtual void translate(const Vector3& translate);
+	virtual void update(const float deltaTime, const Vector3& translate);
 
 private:
 	Vector3 m_Dir;

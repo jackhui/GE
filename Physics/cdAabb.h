@@ -38,7 +38,7 @@ public:
 
 	const Vector3 getCenter();
 
-	virtual void translate(const Vector3& translate);
+	virtual void update(const float deltaTime, const Vector3& translate);
 
 
 private:

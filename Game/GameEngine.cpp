@@ -152,29 +152,39 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	float arr[4][4];
 	float arr1[4][4];
+	float arr2[4][4];
+	float arr3[4][4];
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
 			arr[i][j] = 0.0f;
 			arr1[i][j] = 0.0f;
+			arr2[i][j] = 0.0f;
+			arr3[i][j] = 0.0f;
 		}
 	}
 	arr[0][3] = -0.5f;
-
 	arr1[0][3] = 0.5f;
+	arr2[1][3] = -0.5f;
+	arr3[1][3] = 0.5f;
 
 	Matrix4 transform(arr);
 	Matrix4 transform1(arr1);
+	Matrix4 transform2(arr2);
+	Matrix4 transform3(arr3);
 
 	Vector3 origin1(6.0f, 0.0f, 0.0f);
 	Vector3 origin2(-8.0f, 2.0f, -2.0f);
+	Vector3 origin3(0.0f, 10.0f, 0.0f);
+	Vector3 origin4(0.0f, -4.0f, 0.0f);
+	float radius = 1.0f;
 	Vector3 dimension(2.01f, 2.01f, 2.01f);
 
 	Debug debug;
 	//Two vertices
 
-/**
+	/**
 	debug.draw_line(vertices[0]);
 	debug.draw_line(vertices[1]);
 	//Vector3(center_x, center_y, center_z), Vector3(width, height depth), vertexPerCrossSection, num_slices)
@@ -185,29 +195,33 @@ void GameEngine::Start(HINSTANCE hInst)
 	float translate = 0.0f;
 	for (int i = 0; i < 100; i++)
 	{
-		translate += i;
-		debug.draw_prism(Vector3(translate, translate, translate), vertices[2][1], Primitives::CYLINDER);
+	translate += i;
+	debug.draw_prism(Vector3(translate, translate, translate), vertices[2][1], Primitives::CYLINDER);
 	}
-*/
-//	debug.draw_ellipsoid(Vector3(5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
-//	debug.draw_ellipsoid(Vector3(-5.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
-	
+	*/
+
+
 	debug.draw_prism(origin1, dimension, Primitives::RECTANGULAR_PRISM);
 	debug.draw_prism(origin2, dimension, Primitives::RECTANGULAR_PRISM);
-
+	debug.draw_ellipsoid(origin3, Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
+	debug.draw_ellipsoid(origin4, Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
 	// GameObject* array[1]
 	//array[0] = new GamObject(blah blah blah);
-	
+
 	Vector3 velocity1(-0.5f, 0.0f, 0.0f);
 	Vector3 velocity2(0.5f, 0.0f, 0.0f);
-
+	Vector3 velocity3(0.0f, -0.5f, 0.0f);
+	Vector3 velocity4(0.0f, 0.5f, 0.0f);
 
 	AABB aabb1;
 	AABB aabb2;
 	aabb1.computeAABB(origin1, dimension);
 	aabb2.computeAABB(origin2, dimension);
-	GameObject gameObj1(&CollidableObject(&aabb1, velocity1, 2), nullptr, nullptr, transform);
-	GameObject gameObj2(&CollidableObject(&aabb2, velocity1, 3), nullptr, nullptr, transform1);
+	GameObject gameObj1(&aabb1, nullptr, nullptr, transform, 0);
+	GameObject gameObj2(&aabb2, nullptr, nullptr, transform1, 1);
+
+	GameObject gameObj3(&Sphere(origin3, radius), nullptr, nullptr, transform2, 2);
+	GameObject gameObj4(&Sphere(origin4, radius), nullptr, nullptr, transform3, 2);
 
 	Font show;
 
@@ -220,17 +234,14 @@ void GameEngine::Start(HINSTANCE hInst)
 	const float FPS = 5.0f;
 	float elaspedTime = 0.0f;
 
-	// m0, m1 -> sphere1, sphere2
 	MeshInstance* m0 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(0);
 	MeshInstance* m1 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(1);
 
-	// m2, m3 -> box1, box2
-//	MeshInstance* m2 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(2);
-//	MeshInstance* m3 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(3);
+	MeshInstance* m2 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(2);
+	MeshInstance* m3 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(3);
 
 	// Memory
 	//MemoryManager::GetInstance()->Construct();
-	Vector3 velocity3(0.0f, -0.5f, 0.0f);
 	// enter the main game loop
 	bool bQuit = false;
 	while (!bQuit)
@@ -244,7 +255,7 @@ void GameEngine::Start(HINSTANCE hInst)
 				&(velocity1)			//translation
 			);
 			//sphere1.translate(Vector3(-0.5f, 0.0f, 0.0f));
-			gameObj1.Update(0.0f);
+			gameObj1.Update(1.0f);
 
 			
 			m1->Transform(
@@ -253,37 +264,38 @@ void GameEngine::Start(HINSTANCE hInst)
 				&(velocity2)			//translation
 			);
 			//sphere2.translate(Vector3(0.5f, 0.0f, 0.0f));
-			gameObj2.Update(0.0f);
-/**			
+			gameObj2.Update(1.0f);
+		
 
 			m2->Transform(
 				new float(1.0f),						//scaling
 				&(Vector3(0.0f, 0.0f, 0.0f)),			//rotation
 				&(velocity3)			//translation
 				);
-			aabb_1.translate(velocity3);
+			gameObj3.Update(1.0f);
+
 			m3->Transform(
 				new float(1.0f),						//scaling
 				&(Vector3(0.0f, 0.0f, 0.0f)),			//rotation
 				&(velocity4)			//translation
 				);
-			aabb_2.translate(velocity4);
-		
-			world.computeCollision();
-			sprintf(p, "%d", world.getCollideSize());
-			font.write(p, 6.0f, 6.0f);
+			gameObj4.Update(1.0f);
 
-			if (world.getCollideSize() == 1) {
-//			if (count)
-				font.write("JACKHSK", 0.0f, 0.0f);
+			if (gameObj3.isCollided(&gameObj4))
+			{
+				show.write("spheres collided", 5.0f, 5.0f);
+				transform2.setTranslate(0.0f, 0.5f, 0.0f);
+				transform3.setTranslate(0.0f, -0.5f, 0.0f);
+				gameObj3.setTransform(transform2);
+				gameObj4.setTransform(transform3);
 				velocity3.SetY(0.5f);
 				velocity4.SetY(-0.5f);
-				
 			}
-*/
+
+
 			if (gameObj1.isCollided(&gameObj2))
 			{
-				show.write("gameObject1 and 2 collided", 5.0f, 0.0f);
+				show.write("boxes collided", 5.0f, 0.0f);
 				transform.setTranslate(0.5f, 0.0f, 0.0f);
 				transform1.setTranslate(-0.5f, 0.0f, 0.0f);
 				gameObj1.setTransform(transform1);

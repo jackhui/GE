@@ -2,7 +2,9 @@
 
 
 
-void Sphere::translate(const Vector3 & translate)
+void Sphere::update(const float deltaTime, const Vector3 & translate)
 {
-	m_Center += translate;
+	Vector3 tran = translate;
+	tran.Multiply(deltaTime);
+	m_Center += tran;
 }
