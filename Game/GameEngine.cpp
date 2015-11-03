@@ -10,6 +10,7 @@
 #include "..\Physics\cdObject.h"
 #include "..\Physics\cdAabb.h"
 #include "..\GameObject\GameObject.h"
+#include "..\GameObject\GameWorld.h"
 
 typedef SIMDVector3 Vector3;
 
@@ -203,8 +204,8 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	debug.draw_prism(origin1, dimension, Primitives::RECTANGULAR_PRISM);
 	debug.draw_prism(origin2, dimension, Primitives::RECTANGULAR_PRISM);
-	debug.draw_ellipsoid(origin3, Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
-	debug.draw_ellipsoid(origin4, Vector3(1.0f, 1.0f, 1.0f), Primitives::SPHERE, 30);
+	debug.draw_ellipsoid(origin3, Vector3(2.0f, 2.0f, 2.0f), Primitives::SPHERE, 30);
+	debug.draw_ellipsoid(origin4, Vector3(2.0f, 2.0f, 2.0f), Primitives::SPHERE, 30);
 	// GameObject* array[1]
 	//array[0] = new GamObject(blah blah blah);
 
@@ -221,7 +222,7 @@ void GameEngine::Start(HINSTANCE hInst)
 	GameObject gameObj2(&aabb2, nullptr, nullptr, transform1, 1);
 
 	GameObject gameObj3(&Sphere(origin3, radius), nullptr, nullptr, transform2, 2);
-	GameObject gameObj4(&Sphere(origin4, radius), nullptr, nullptr, transform3, 2);
+	GameObject gameObj4(&Sphere(origin4, radius+0.5f), nullptr, nullptr, transform3, 2);
 
 	Font show;
 
@@ -231,7 +232,7 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	/// Timer
 	Timer m_Timer;
-	const float FPS = 5.0f;
+	const float FPS = 4.0f;
 	float elaspedTime = 0.0f;
 
 	MeshInstance* m0 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(0);
@@ -239,6 +240,10 @@ void GameEngine::Start(HINSTANCE hInst)
 
 	MeshInstance* m2 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(2);
 	MeshInstance* m3 = D3D11Renderer::GetInstance()->GetMeshInstanceList().at(3);
+
+	if (GameWorld::GetInstance()->GetGameObjectList().size() == 4)
+		show.write("four", -2.0f, -2.0f);
+
 
 	// Memory
 	//MemoryManager::GetInstance()->Construct();
@@ -305,6 +310,9 @@ void GameEngine::Start(HINSTANCE hInst)
 
 			//	printf("x: %f, y: %f, z: %f\n", velocity2.GetX(), velocity2.GetY(), velocity2.GetZ());
 			}
+
+			if (gameObj1.isCollided(&gameObj4))
+				show.write("sphere2 and box1 collided", 5.0f, 2.5f);
 
 			// Update the game world based on delta time
 //			D3D11Renderer::GetInstance()->Update();

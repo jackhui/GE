@@ -15,6 +15,7 @@ GameObject::GameObject(Body * collObj, MeshInstance * meshObj, Collide * contact
 	m_pContact =		contact;
 	m_Transform =		transform;
 	m_GameObjectID =	gameObjID;
+	GameWorld::GetInstance()->GetGameObjectList().push_back(this);
 }
 
 void GameObject::Update(float deltaTime)

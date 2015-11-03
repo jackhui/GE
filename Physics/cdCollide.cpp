@@ -5,6 +5,7 @@
 #include "cdAabb.h"
 #include "cdPoint.h"
 #include "cdRay.h"
+#include <math.h>
 
 
 void Collide::setResponseObject1(const Vector3& response)
@@ -133,6 +134,39 @@ void Collide::sphereSphereCollide(const Body * sphere_1, const Body * sphere_2)
 
 void Collide::boxSphereCollide(const Body * box, const Body * sphere)
 {
+	AABB* m_box = (AABB*)box;
+	Sphere* m_sphere = (Sphere*)sphere;
+	float dMin = 0.0f;
+
+	Vector3 sCenter = m_sphere->getCenter();
+	Vector3 bMin = m_box->getMin();
+	Vector3 bMax = m_box->getMax();
+
+	if (sCenter.GetX() > bMin.GetX())
+		dMin += pow(sCenter.GetX() - bMin.GetX(), 2);
+	else if (sCenter.GetX() < bMax.GetX())
+		dMin += pow(sCenter.GetX() - bMax.GetX(), 2);
+
+	if (sCenter.GetY() < bMin.GetY())
+		dMin += pow(sCenter.GetY() - bMin.GetY(), 2);
+	else if (sCenter.GetY() > bMax.GetY())
+		dMin += pow(sCenter.GetY() - bMax.GetY(), 2);
+
+	if (sCenter.GetZ() < bMin.GetZ())
+		dMin += pow(sCenter.GetZ() - bMin.GetZ(), 2);
+	else if (sCenter.GetY() > bMax.GetY())
+		dMin += pow(sCenter.GetZ() - bMax.GetZ(), 2);
+
+	if (dMin <= pow(m_sphere->getRadius(), 2))
+	{
+		setCollide(true);
+		setDistance(1);
+	}
+	else
+	{
+		setCollide(false);
+		setDistance(-1);
+	}
 }
 
 void Collide::pointBoxCollide(const Body * point_, const Body * box)

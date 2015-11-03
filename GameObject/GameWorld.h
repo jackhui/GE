@@ -4,20 +4,21 @@
 
 #include <vector>
 #include "GameObject.h"
+class GameObject;
 
 class GameWorld
 {
 public:
 	GameWorld(){}
 
-//	static GameWorld*					GetInstance();
+	static GameWorld*					GetInstance();
 
-//	static std::vector<GameObject*>&	GetGameObjectList();
+	std::vector<GameObject*>&	GetGameObjectList();
 
 private:
-//	static GameWorld*					m_pGameWorld;
+	static GameWorld*					m_pGameWorld;
 
-//	static std::vector<GameObject*>		m_GameObjectList;
+	std::vector<GameObject*>		m_GameObjectList;
 };
 
 

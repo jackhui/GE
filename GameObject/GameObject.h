@@ -6,6 +6,7 @@
 #include "..\Math\simdmath.h"
 #include "..\Physics\cdCollide.h"
 #include "..\Physics\cdBody.h"
+#include "GameWorld.h"
 
 
 typedef SIMDMatrix4 Matrix4;
